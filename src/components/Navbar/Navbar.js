@@ -2,49 +2,36 @@ import React, {Component} from 'react';
 
 import {Route, NavLink, Switch, Link} from 'react-router-dom';
 
-import Result from './Result';
-import Home from '../components/Home';
-import Results from '../containers/Results/Results';
+import Result from '../Results/Result';
+import Results from '../Results/Results';
 //this is where the search will be
 class Navbar extends Component{
   //take values passed on from App and put in state
   state ={
       movie:"",
       results: null,
+      click:false
   }
   handleChange = event =>{
     // probably need a timeout to wait for user to stop writing to not make uneccesary calls
     this.setState({movie:event.target.value});
     event.preventDefault();
-    if(this.state.movie.length > 1){
-      fetch(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${this.state.movie}&page=1&include_adult=false`)
-        .then(response => response.json())
-        .then(data => {this.setState({results: data})
-        console.log(data.results.slice(0,5))});
-    }else {this.setState({results:null})}
+    
   }
   handleSubmit = (event) =>{
     event.preventDefault();
+    this.setState({movie:event.target.value});
+    
   }
   resultsNull = () =>{
     this.setState({results:null})
   }
+  handleClick = (event) =>{
+    this.setState({click: !this.state.click})
+  }
   render(){
     //can also write styles here
-    let result = null;
-    if (this.state.results != null){
-    result = (
-        <div>  
-            {this.state.results.results.map((value, index) => {
-            return (
-                <Result
-                key={index}
-                path={"http://image.tmdb.org/t/p/w185/"+this.state.results.results[index].poster_path}
-                title={this.state.results.results[index].title}/>
-            )
-            })} 
-        </div>
-    )}
+    
     return (
       <div>
         <ul>
@@ -53,11 +40,14 @@ class Navbar extends Component{
         </ul>
         <h1> Search for movies </h1>  
             <form onSubmit={this.handleSubmit}>
-              
+            
                 <input type="text" value={this.state.movie} onChange={this.handleChange}  placeholder="Search for movie..."/>
-                    <button >Click me</button>
+                  <Link to="/results">
+                    <button onClick={this.handleClick}>Click me</button>
+                  </Link>
             </form>
-            {result}
+            <Route exact path="/results" render={(props) => ( <Results {...props} movie={this.state.movie} click={this.state.click}/>)}/>
+            
       </div>
     )
   }

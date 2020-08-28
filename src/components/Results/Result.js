@@ -6,6 +6,7 @@ const result = (props) =>{
         <div className="Movie">
             <img src={props.path}></img>
             <p >{props.title}</p>
+            <p></p>
         </div>
     )
 }
