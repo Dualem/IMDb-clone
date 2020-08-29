@@ -9,8 +9,6 @@ class Navbar extends Component{
   //take values passed on from App and put in state
   state ={
       movie:"",
-      results: null,
-      click:false
   }
   handleChange = event =>{
     // probably need a timeout to wait for user to stop writing to not make uneccesary calls
@@ -18,16 +16,11 @@ class Navbar extends Component{
     event.preventDefault();
     
   }
-  handleSubmit = (event) =>{
+
+  onSubmit = (event) => {
     event.preventDefault();
-    this.setState({movie:event.target.value});
-    
-  }
-  resultsNull = () =>{
-    this.setState({results:null})
-  }
-  handleClick = (event) =>{
-    this.setState({click: !this.state.click})
+    this.props.onSubmit(this.state);
+    this.setState({movie: ""})
   }
   render(){
     //can also write styles here
@@ -39,12 +32,10 @@ class Navbar extends Component{
           <li><NavLink to='/account'>Account</NavLink></li>
         </ul>
         <h1> Search for movies </h1>  
-            <form onSubmit={this.handleSubmit}>
+            <form >
             
                 <input type="text" value={this.state.movie} onChange={this.handleChange}  placeholder="Search for movie..."/>
-                  <Link to="/results">
-                    <button onClick={this.handleClick}>Click me</button>
-                  </Link>
+                    <button onClick={this.onSubmit}>Click me</button>
             </form>
             <Route exact path="/results" render={(props) => ( <Results {...props} movie={this.state.movie} click={this.state.click}/>)}/>
             
