@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Route, NavLink, Switch, Link} from 'react-router-dom';
+import {Route, NavLink, Switch, Link, withRouter} from 'react-router-dom';
 
 import Result from '../Results/Result';
 import Results from '../Results/Results';
@@ -16,20 +16,19 @@ class Navbar extends Component{
     event.preventDefault();
     
   }
-
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    this.props.history.push(`/results/${this.state.movie}`)
     this.setState({movie: ""})
+    
   }
   render(){
     //can also write styles here
-    
     return (
       <div>
         <ul>
-          <li><NavLink to ='/'>Home</NavLink></li>
-          <li><NavLink to='/account'>Account</NavLink></li>
+          <li><NavLink to ='/' >Home</NavLink></li>
+          <li><NavLink to='/account' >Account</NavLink></li>
         </ul>
         <h1> Search for movies </h1>  
             <form >
@@ -37,10 +36,9 @@ class Navbar extends Component{
                 <input type="text" value={this.state.movie} onChange={this.handleChange}  placeholder="Search for movie..."/>
                     <button onClick={this.onSubmit}>Click me</button>
             </form>
-            <Route exact path="/results" render={(props) => ( <Results {...props} movie={this.state.movie} click={this.state.click}/>)}/>
             
       </div>
     )
   }
 }
-export default Navbar;
+export default withRouter(Navbar);
