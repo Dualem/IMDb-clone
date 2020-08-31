@@ -24,6 +24,7 @@ class Navbar extends Component{
   }
   render(){
     //can also write styles here
+    
     return (
       <div>
         <ul>

@@ -20,14 +20,7 @@ const Results = (props) =>{
     if (results != null){
     result = (
         <div>  
-            {results.map((value, index) => {
-            return (
-                <Result
-                key={index}
-                path={"http://image.tmdb.org/t/p/w185/"+results[index].poster_path}
-                title={results[index].title}/>
-            )
-            })} 
+            <Result results={results}/>
         </div>
     )}
 
