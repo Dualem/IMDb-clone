@@ -1,6 +1,6 @@
 
 import React, {useState, useEffect, useRef} from 'react'
-
+import './Result.css'
 import Result from './Result';
 const Results = (props) =>{
     const movie = props.match.params.movie;
@@ -19,9 +19,7 @@ const Results = (props) =>{
     let result = null;
     if (results != null){
     result = (
-        <div>  
             <Result results={results}/>
-        </div>
     )}
 
     const prevMovieRef = useRef();
@@ -33,8 +31,8 @@ const Results = (props) =>{
     })
     const prevMovie = prevMovieRef.current
     return (
-        <div>
-            <h1>{result}</h1>
+        <div className="Results">
+            {result}
             
         </div>
     )

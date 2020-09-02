@@ -1,6 +1,6 @@
 //use functional components and Hooks for this one
 import React from 'react';
-
+import './Result.css'
 const result = ({results}) => results.map((value, index) => {
     return(
         <div key={index} className="Movie">

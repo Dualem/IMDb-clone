@@ -1,4 +1,9 @@
 import React, {Component} from 'react';
+import classes from "./Navbar.module.css";
+
+//font awsome
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 import {Route, NavLink, Switch, Link, withRouter} from 'react-router-dom';
 
@@ -26,18 +31,18 @@ class Navbar extends Component{
     //can also write styles here
     
     return (
-      <div>
-        <ul>
-          <li><NavLink to ='/' >Home</NavLink></li>
-          <li><NavLink to='/account' >Account</NavLink></li>
-        </ul>
-        <h1> Search for movies </h1>  
-            <form >
-            
-                <input type="text" value={this.state.movie} onChange={this.handleChange}  placeholder="Search for movie..."/>
-                    <button onClick={this.onSubmit}>Click me</button>
-            </form>
-            
+      <div className={classes.Navbar} >
+            <NavLink to ='/' className={classes.Home} >Movie center</NavLink>
+            <div className={classes.searchBar}>
+              <form >
+              
+                  <input type="text" value={this.state.movie} onChange={this.handleChange}  placeholder="Search for movie..."/>
+                      <button onClick={this.onSubmit}><FontAwesomeIcon icon={faSearch}/></button>
+              </form>
+          </div>
+          <div className={classes.poweredBy}>
+            <p>Powered by</p><img src="https://www.themoviedb.org/assets/2/v4/logos/v2/blue_square_2-d537fb228cf3ded904ef09b136fe3fec72548ebc1fea3fbbd1ad9e36364db38b.svg"></img>
+          </div>
       </div>
     )
   }

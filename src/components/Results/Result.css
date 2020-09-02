@@ -1,0 +1,11 @@
+.Movie{
+    margin:10px;
+}
+
+.Results{
+    max-width:1140px;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-wrap:wrap;
+}

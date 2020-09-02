@@ -1,0 +1,74 @@
+.Home h2{
+    max-width:1140px;
+    margin-left:auto;
+    margin-right:auto;
+    text-align:left;
+}
+.slider{
+    position:relative;
+    max-width: 1140px;
+    margin-left:auto;
+    margin-right:auto;
+    overflow-x: hidden;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+.container{
+    display:flex;
+    transition: transform 300ms cubic-bezier(0.455, 0.03, 0.515, 0.955);
+    
+}
+
+.wrapper{
+    min-width: 1140px;
+    display:flex;
+    
+}
+.poster{
+    width:30%;
+    margin-left:5px;
+}
+.backdrop{
+    width:70%;
+    margin-left:5px;
+}
+.next{
+    position: absolute;
+    top:40%;
+    right:3%;
+    width:auto;
+    height:auto;
+    padding:10px;
+    font-size: 2.5em;
+    background-color: rgba(0, 0, 0, 0.3); 
+    color:white;
+    cursor: pointer;
+    border: 1.5px solid white;
+    border-radius:5px;
+}
+
+button:hover{
+    color:grey;
+}
+.back{
+    border-radius:5px;
+    position: absolute;
+    top:40%;
+    left:3%;
+    width:auto;
+    height:auto;
+    padding:10px;
+    font-size: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.3); 
+    color:white;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.trending{
+    display:flex;
+    max-width: 1140px;
+    overflow-x: hidden;
+    margin-left:auto;
+    margin-right:auto;
+}
