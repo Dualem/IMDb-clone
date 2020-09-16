@@ -17,7 +17,7 @@ const Results = (props) =>{
     }
     
     let result = null;
-    if (results != null){
+    if (results !== null){
     result = (
             <Result results={results}/>
     )}
@@ -25,7 +25,7 @@ const Results = (props) =>{
     const prevMovieRef = useRef();
     useEffect(() =>{
         prevMovieRef.current = movie
-        if (movie != prevMovie){
+        if (movie !== prevMovie){
             fetchMovies(movie)
         }
     })

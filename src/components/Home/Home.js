@@ -4,7 +4,7 @@ import Result from '../Results/Result';
 import Popular from './Popular';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons'
 import classes from './Home.module.css'
 
 class Home extends Component{
@@ -12,6 +12,7 @@ class Home extends Component{
   state = {
     trending: null,
     popular: null,
+    topRated: null,
     index: 1
   }
   componentDidMount(){
@@ -25,55 +26,72 @@ class Home extends Component{
       .then(response => response.json())
       .then(data => {
           this.setState({popular:data.results.slice(0,5)})
-      console.log(data.results.slice(0,3))});
+      console.log(data.results.slice(0,5))});
+
+      fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&page=1`)
+      .then(response => response.json())
+      .then(data => {
+          this.setState({topRated:data.results})
+      console.log(data.results.slice(0,5))});
   }
   handleBack = (event) =>{
-    if(this.state.index != 0){
+    if(this.state.index !== 0){
       this.setState({index: this.state.index - 1})
     }
   }
   handleNext = (event) =>{
-    if(this.state.index != 4 ){
+    if(this.state.index !== 4 ){
       this.setState({index: this.state.index + 1})
     }
   }
   
   render(){
-    
+    let style = { 
+      "display":"block"
+    }
     let trendingResult = null;
     let popularResult = null;
+    let topRated = null;
     if (this.state.trending != null){
       trendingResult = (
-          <Result results={this.state.trending}/>
+        <Result results={this.state.trending}/>
         
       )
     }
     if (this.state.popular != null){
       popularResult = (
-          <Popular results={this.state.popular}/>
+        <Popular results={this.state.popular}/>
+      )
+    }
+    if (this.state.topRated != null){
+      topRated = (
+        <Result results={this.state.topRated}/>
       )
     }
       return (
-        <div class={classes.Home}>
-          <div class={classes.slider} >
-          
-            <div class={classes.container} style={{
+        <div className={classes.Home}>
+          <div className={classes.slider} >
+            <div className={classes.container} style={{
             'transform':`translateX(-${this.state.index * 1140}px)`
-          }}>
-                    {popularResult}
+            }}>
+            {popularResult}
             </div>
-            <button onClick={this.handleBack} class={classes.back} >
-            <FontAwesomeIcon icon={faArrowLeft} />
+            <button onClick={this.handleBack} className={classes.back} style={style}>
+            <FontAwesomeIcon icon={faChevronLeft} />
             </button>
-            <button onClick={this.handleNext} class={classes.next} >
-              <FontAwesomeIcon icon={faArrowRight}/>
+            <button onClick={this.handleNext} className={classes.next} >
+              <FontAwesomeIcon icon={faChevronRight}/>
             </button> 
           </div>
           <h2>Trending</h2>
           <div className={classes.trending}>
             {trendingResult}
+            
           </div>
-          
+          <h2>Top rated</h2>
+          <div className={classes.trending}>
+            {topRated}
+          </div>
         </div>
       )
   }

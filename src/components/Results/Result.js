@@ -4,9 +4,8 @@ import './Result.css'
 const result = ({results}) => results.map((value, index) => {
     return(
         <div key={index} className="Movie">
-            <img src={"http://image.tmdb.org/t/p/w185/"+results[index].poster_path}></img>
-            <p >{results[index].title}</p>
-            <p></p>
+            <img className="image" src={"http://image.tmdb.org/t/p/w185/"+results[index].poster_path}></img>
+            <p className="title">{results[index].title}</p>
         </div>
     )
 })

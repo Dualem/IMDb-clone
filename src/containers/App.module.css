@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;800&display=swap";
 
 * {
   box-sizing: border-box;
@@ -6,7 +6,7 @@
   margin: 0;
 }
 body {
-  
+  font-family: "Roboto Slab", sans-serif;
   background-color:black;
   color: white;
 }
